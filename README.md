@@ -19,7 +19,6 @@
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| item_image          |            | null: false, ActiveStorage     |
 | item_name           | string     | null: false                    |
 | info                | text       | null: false                    |
 | category_id         | integer    | null: false, ActiveHash        |
