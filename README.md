@@ -46,7 +46,7 @@
 | order_record        | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :order_record
+- belongs_to :order_record
 
 ## order_records table
 | Column              | Type       | Options                        |
@@ -55,6 +55,6 @@
 | user                | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :order
+- has_one :order
 - belongs_to :user
 - belongs_to :item
