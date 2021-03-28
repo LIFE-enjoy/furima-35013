@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  has_many :items
 
   with_options presence: true do
     validates :nickname
@@ -13,5 +15,5 @@ class User < ApplicationRecord
     validates :birth_date
     validates :password_confirmation
   end
-   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'は半角英数字を含めて入力してください', allow_blank: true }
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'は半角英数字を含めて入力してください', allow_blank: true }
 end
