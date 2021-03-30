@@ -5,7 +5,6 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item)
   end
 
-
   describe '商品出品' do
     context '商品出品ができる場合' do
       it '全ての項目に適切な情報を入力すると出品できる' do
@@ -77,7 +76,6 @@ RSpec.describe Item, type: :model do
       it 'ユーザーが紐付いていなければ投稿できない' do
         @item.user = nil
         @item.valid?
-        binding.pry
         expect(@item.errors.full_messages).to include('Userを入力してください')
       end
     end
