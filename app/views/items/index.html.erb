@@ -155,7 +155,7 @@
       </li>
       <% end %>
 
-      <% if @items.nil? %>
+      <% if @items.blank? %>
         <li class='list'>
           <%= link_to new_item_path do %>
           <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
