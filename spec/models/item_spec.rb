@@ -59,17 +59,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('金額を入力してください')
       end
       it '金額が¥300以上でないと登録できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('金額は¥300~¥9,999,999で入力してください')
       end
       it '金額が¥9,999,999以内でないと登録できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('金額は¥300~¥9,999,999で入力してください')
       end
       it '金額が半角数字でないと登録できない' do
         @item.price = '５０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('金額は半角数字で入力してください')
+      end
+      it '半角英語では登録できない' do
+        @item.price = 'aaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('金額は半角数字で入力してください')
+      end
+      it '半角英数混合では登録できないこと' do
+        @item.price = '3000yen'
         @item.valid?
         expect(@item.errors.full_messages).to include('金額は半角数字で入力してください')
       end
