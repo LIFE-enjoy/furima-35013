@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :redirect_root
 
   def index
+    redirect_to root_path if @item.order_record.present?
     @order_record_order = OrderRecordOrder.new
   end
 
