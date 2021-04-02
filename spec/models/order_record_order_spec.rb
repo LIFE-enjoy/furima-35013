@@ -12,6 +12,11 @@ RSpec.describe OrderRecordOrder, type: :model do
         end
       end
       context '商品の購入ができない場合' do
+        it "tokenが空では登録できないこと" do
+          @order_record_order.token = nil
+          @order_record_order.valid?
+          expect(@order_record_order.errors.full_messages).to include( 'トークンを入力してください' )
+        end
         it '郵便番号が空だと保存できない' do
           @order_record_order.postal_code = nil
           @order_record_order.valid?
