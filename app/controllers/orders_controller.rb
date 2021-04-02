@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   def create
     @order_record_order = OrderRecordOrder.new(order_params)
     if @order_record_order.valid?
-      pay_item      
+      pay_item
       @order_record_order.save
       redirect_to root_path
     else
