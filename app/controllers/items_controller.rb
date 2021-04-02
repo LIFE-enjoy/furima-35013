@@ -25,9 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if   @item.order_record.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.order_record.present?
   end
 
   def update
@@ -39,8 +37,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-      @item.destroy
-      redirect_to root_path
+    @item.destroy
+    redirect_to root_path
   end
 
   private
