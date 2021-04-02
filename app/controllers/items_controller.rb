@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order('created_at DESC')
-    @order_record = OrderRecord.all
+    @order_record = OrderRecord.includes(:item)
   end
 
   def new

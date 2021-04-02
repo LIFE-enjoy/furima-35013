@@ -29,9 +29,11 @@
         <p class="or-text">or</p>
         <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
       <% else %>
-      <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
-      <%# //商品が売れていない場合はこちらを表示しましょう %>
+
+        <% if @order_record.exists?(user_id: @item.user_id, item_id: @item.id) %>
+        <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
+        <% end %>
+      
       <% end %>
     <% end %>
 
