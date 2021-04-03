@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe OrderRecordOrder, type: :model do
   before do
     @order_record_order = FactoryBot.build(:order_record_order)
+    @order_record_order.user_id = FactoryBot.build(:user)
+    @order_record_order.item_id = FactoryBot.build(:item)
   end
   describe '商品の購入' do
     context '商品の購入ができる場合' do
@@ -61,7 +63,7 @@ RSpec.describe OrderRecordOrder, type: :model do
         expect(@order_record_order.errors.full_messages).to include('Itemを入力してください')
       end
       it '電話番号は12桁以上では登録できない' do
-        @order_record_order.phone_number = '111111111111'
+        @order_record_order.phone_number = 111111111111
         @order_record_order.valid?
         expect(@order_record_order.errors.full_messages).to include('電話番号は11文字以内で入力してください')
       end
