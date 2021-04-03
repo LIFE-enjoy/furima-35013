@@ -7,7 +7,8 @@ class OrderRecordOrder
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'に-(ハイフン)をつけてください', allow_blank: true }
     validates :city
     validates :address
-    validates :phone_number
+    validates :phone_number, length: { maximum: 11 } , format: {
+      with: /\A[0-9]+\z/, message: 'は半角数字で入力してください', allow_blank: true }
     validates :user_id
     validates :item_id
     validates :token

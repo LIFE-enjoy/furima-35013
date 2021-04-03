@@ -9,9 +9,13 @@ RSpec.describe OrderRecordOrder, type: :model do
       it 'すべての値が正しく入力されていれば保存できる' do
         expect(@order_record_order).to be_valid
       end
+      it '建物名が抜けていても登録できる' do
+        @order_record_order.building = ''
+        expect(@order_record_order).to be_valid
+      end
     end
     context '商品の購入ができない場合' do
-      it 'tokenが空では登録できないこと' do
+      it 'tokenが空では登録できない' do
         @order_record_order.token = nil
         @order_record_order.valid?
         expect(@order_record_order.errors.full_messages).to include('トークンを入力してください')
@@ -45,6 +49,26 @@ RSpec.describe OrderRecordOrder, type: :model do
         @order_record_order.prefecture_id = 0
         @order_record_order.valid?
         expect(@order_record_order.errors.full_messages).to include('都道府県を選択してください')
+      end
+      it 'user_idは空では登録できない' do
+        @order_record_order.user_id = nil
+        @order_record_order.valid?
+        expect(@order_record_order.errors.full_messages).to include('Userを入力してください')
+      end
+      it 'item_idは空では登録できない' do
+        @order_record_order.item_id = nil
+        @order_record_order.valid?
+        expect(@order_record_order.errors.full_messages).to include('Itemを入力してください')
+      end
+      it '電話番号は12桁以上では登録できない' do
+        @order_record_order.phone_number = '111111111111'
+        @order_record_order.valid?
+        expect(@order_record_order.errors.full_messages).to include('電話番号は11文字以内で入力してください')
+      end
+      it '電話番号は英数混合では登録できない' do
+        @order_record_order.phone_number = '1111aaabbbc'
+        @order_record_order.valid?
+        expect(@order_record_order.errors.full_messages).to include('電話番号は半角数字で入力してください')
       end
     end
   end
