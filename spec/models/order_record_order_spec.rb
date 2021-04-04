@@ -63,7 +63,7 @@ RSpec.describe OrderRecordOrder, type: :model do
         expect(@order_record_order.errors.full_messages).to include('Itemを入力してください')
       end
       it '電話番号は12桁以上では登録できない' do
-        @order_record_order.phone_number = 111111111111
+        @order_record_order.phone_number = '111111111111'
         @order_record_order.valid?
         expect(@order_record_order.errors.full_messages).to include('電話番号は11文字以内で入力してください')
       end
