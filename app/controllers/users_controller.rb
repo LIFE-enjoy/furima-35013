@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(update_params)
-      redirect_to :show
-    end
+    redirect_to :show if @user.update(update_params)
   end
 
   private

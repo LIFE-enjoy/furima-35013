@@ -19,5 +19,4 @@ class User < ApplicationRecord
   validates :password,
             format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'は半角英数字を含めて入力してください', allow_blank: true }
   validates :profile, length: { maximum: 200 }
-
 end
