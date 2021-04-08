@@ -1,0 +1,173 @@
+.user-show-main{
+  width: 100vw;
+}
+
+
+.user-shows{
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 200px 40px 220px;
+}
+
+
+.profile-main{
+  background-color:beige;
+  box-shadow:
+  inset -5px -5px 10px 0px #859daf,
+  inset 5px 5px 10px 0px white;
+  height: 50vh;
+  width: 40%;
+  margin-right:50px;
+  border:black solid 1.5px ;
+}
+
+.profile-name{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10%;
+}
+
+
+.profile-nickname{
+  font-size: 1.5vw;
+  color: black;
+  font-weight: bold;
+  margin: 10px;
+}
+
+
+.profile-content{
+  height: 80%;
+  box-shadow: 0 0 4px #595c5f,
+}
+
+.profile-text{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px;
+}
+
+.profile-text-content{
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.edit-bottom{
+  width: 3vh;
+  margin: 0 10px 0 0;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+
+.order-record{
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order-info{
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: black 2px solid;
+  color: black;
+  margin: auto 10px;
+}
+
+.list-item-main{
+  background-color: whitesmoke;
+  height: 50vh;
+  width: 60%;
+  border:black solid 1.5px ;
+}
+
+.list-item-title{
+  font-weight: bold;
+  box-shadow:
+    inset -8px -8px 16px 0px #afb3b6,
+    inset 8px 8px 16px 0px white;
+  background-color: beige;
+  width: 100%;
+  height: 10%;
+  font-size: 1.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-items{
+  display: flex;
+  width: 100%;
+  height: calc(100% - 10%);
+  overflow: scroll;
+  background-color:white;
+  flex-wrap: wrap;
+}
+
+.list-item{
+  box-shadow:
+    inset -8px -8px 16px 0px #afb3b6,
+    inset 8px 8px 16px 0px white;
+  display: inline-block;
+  flex-direction: column;
+  width: 40%;
+  margin: 20px 28px;
+}
+
+.list-image{
+  height: 150px;
+  width: 100%;
+}
+
+.list-info{
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  font-weight: 550;
+}
+
+/* モーダル コンテンツ */
+.modal{
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+height: 100vh;
+width: 100vw;
+overflow: scroll;
+background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content{
+background-color: white;
+width: 50%;
+height: 500px;
+margin: 10px auto;
+text-align: center;
+margin: auto;
+z-index: 2;
+}
+
+.edit-area{
+  height: 80%;
+}
+
+.modal-title{
+  
+}
+
+.profile-input{
+  resize: none;
+  height: 100%;
+  width: 50%;
+  margin: 10px auto ;
+  padding: 15px;
+}
+
+
