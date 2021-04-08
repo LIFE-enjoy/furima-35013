@@ -205,3 +205,8 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.detail-nickname{
+  border-bottom:solid 1px ;
+  color: #2d2d2d;
+}
