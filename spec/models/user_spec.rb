@@ -10,6 +10,10 @@ RSpec.describe User, type: :model do
       it '全ての項目に適切な情報を入力すると登録できる' do
         expect(@user).to be_valid
       end
+      it 'プロフィールがからでも登録できる' do
+        @user.profile = ''
+        expect(@user).to be_valid
+      end
     end
 
     context '新規登録ができない場合' do
@@ -115,6 +119,11 @@ RSpec.describe User, type: :model do
         @user.birth_date = ''
         @user.valid?
         expect(@user.errors.full_messages).to include('生年月日を入力してください')
+      end
+      it 'プロフィールは201文字以上だと保存できない' do
+        @user.profile = Faker::Lorem.characters(number: 201)
+        @user.valid?
+        expect(@user.errors.full_messages).to include('プロフィールは200文字以内で入力してください')
       end
     end
   end

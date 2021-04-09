@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :order_record_order do
+    receiver { Faker::Name.name }
     postal_code { '111-1111' }
     prefecture_id { Faker::Number.between(from: 1, to: 47) }
     city { Faker::Address.city }
