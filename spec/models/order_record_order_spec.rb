@@ -7,6 +7,7 @@ RSpec.describe OrderRecordOrder, type: :model do
     @order_record_order = FactoryBot.build(:order_record_order)
     @order_record_order.user_id = user.id
     @order_record_order.item_id = item.id
+    sleep 0.1
   end
   describe '商品の購入' do
     context '商品の購入ができる場合' do
@@ -19,10 +20,15 @@ RSpec.describe OrderRecordOrder, type: :model do
       end
     end
     context '商品の購入ができない場合' do
-      it 'tokenが空では登録できない' do
+      it 'クレジットカード情報が空では登録できない' do
         @order_record_order.token = nil
         @order_record_order.valid?
-        expect(@order_record_order.errors.full_messages).to include('トークンを入力してください')
+        expect(@order_record_order.errors.full_messages).to include('クレジットカード情報を入力してください')
+      end
+      it '宛名が空では登録できない' do
+        @order_record_order.receiver = ''
+        @order_record_order.valid?
+        expect(@order_record_order.errors.full_messages).to include('宛名を入力してください')
       end
       it '郵便番号が空だと保存できない' do
         @order_record_order.postal_code = nil

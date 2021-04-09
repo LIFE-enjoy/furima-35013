@@ -8,6 +8,7 @@ ja:
         last_name_kana: 苗字（カナ）
         first_name_kana: 名前（カナ）
         birth_date: 生年月日
+        profile: プロフィール
       item:
         image: 商品画像
         name: 商品名
@@ -22,6 +23,7 @@ ja:
   activemodel:
     attributes:
       order_record_order:
+        receiver: 宛名
         postal_code: 郵便番号
         city: 市区町村
         address: 番地
