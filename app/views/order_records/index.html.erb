@@ -1,5 +1,34 @@
 <%= render "shared/header" %>
 
-
+<div class='order-record-main'>
+  <div class='order-record-body'>
+    <%# 過去の注文履歴一覧 %>
+    <div class='order-record-right-main'>
+      <div class='order-record-right-header'>
+        <h2 class='order-record-right-title'>注文商品一覧</h2>
+      </div>
+      <div class='order-record-right-body'>
+        <% @order_record.each do |order_record| %>
+        <div class='order-record-info'>
+          <div>
+            <%= image_tag order_record.item.image, class:'order-record-image' %>
+          </div>
+          <ul>
+            <li class='order-record-date'>注文日：<%= order_record.created_at.strftime('%Y/%m/%d') %></li>
+            <li><%= link_to order_record.item.name, item_path(order_record.item.id),class:'order-record-item-name' %></li>
+            <li>出品者：<%= link_to order_record.item.user.nickname, user_path(order_record.item.user_id),class:'order-record-seller' %></li>
+            <li class='order-record-price'>¥<%= order_record.item.price %></li>
+            <li class='order-record-buyer'>注文者：<%= order_record.user.nickname %></li>
+            <li class='order-record-shipping-status'>発送状況：<%= order_record.item.ship_date.name %></li>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <%# /過去の注文履歴一覧 %>
+  </div>
+  <div class='order-record-footer'>
+  </div>
+</div>
 
 <%= render "shared/footer" %>

@@ -23,7 +23,7 @@
       <% if user_signed_in? %>
         <% if current_user.id == @user.id %>
           <div class='order-record'>
-            <%= link_to '注文履歴の確認', "#", class:'order-info' %>
+            <%= link_to '注文履歴の確認', order_records_path(current_user.id), class:'order-info' %>
             <%= image_tag("order.png", class:"order-bottom",id:'order-bottom') %>
           </div>
         <% end %>
