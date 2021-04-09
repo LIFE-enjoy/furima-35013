@@ -33,9 +33,8 @@
 
     <%= form_with model: @order_record_order, url: item_orders_path ,id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
 
-    <%= render 'shared/error_messages', model: f.object %>
-
     <%# カード情報の入力 %>
+    <%= render 'shared/error_messages', model: f.object, attribute: :token %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
@@ -86,6 +85,7 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :postal_code, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
+        <%= render 'shared/error_messages', model: f.object, attribute: :postal_code %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -93,6 +93,7 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
+        <%= render 'shared/error_messages', model: f.object, attribute: :prefecture_id %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -100,6 +101,7 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :city, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
+        <%= render 'shared/error_messages', model: f.object, attribute: :city %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -107,6 +109,7 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :address, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
+        <%= render 'shared/error_messages', model: f.object, attribute: :address %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -121,6 +124,7 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
+        <%= render 'shared/error_messages', model: f.object, attribute: :phone_number %>
       </div>
     </div>
     <%# /配送先の入力 %>

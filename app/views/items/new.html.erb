@@ -7,8 +7,6 @@
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
-    <%= render 'shared/error_messages', model: f.object %>
-
     <%# 出品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
@@ -22,6 +20,7 @@
         <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
+    <%= render 'shared/error_messages', model: f.object, attribute: :image %>
     <%# /出品画像 %>
     <%# 商品名と商品説明 %>
     <div class="new-items">
@@ -31,12 +30,14 @@
       </div>
       <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
+      <%= render 'shared/error_messages', model: f.object, attribute: :name %>
         <div class="weight-bold-text">
           商品の説明
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_area :info, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
       </div>
+      <%= render 'shared/error_messages', model: f.object, attribute: :info %>
     </div>
     <%# /商品名と商品説明 %>
 
@@ -49,11 +50,13 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        <%= render 'shared/error_messages', model: f.object, attribute: :category_id %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:status_id, Status.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+        <%= render 'shared/error_messages', model: f.object, attribute: :status_id %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -70,16 +73,19 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= render 'shared/error_messages', model: f.object, attribute: :shipping_cost_id %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
+        <%= render 'shared/error_messages', model: f.object, attribute: :prefecture_id %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:ship_date_id, ShipDate.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= render 'shared/error_messages', model: f.object, attribute: :ship_date_id %>
       </div>
     </div>
     <%# /配送について %>
@@ -110,6 +116,7 @@
           <span>
             <span id='profit'></span>円
         </div>
+        <%= render 'shared/error_messages', model: f.object, attribute: :price_before_type_cast %>
         </span>
       </div>
     </div>
