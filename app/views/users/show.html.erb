@@ -39,7 +39,14 @@
       <div class='list-items'>
          <% @items.each do |item| %>
          <div class='list-item'>
-          <%= link_to image_tag(item.image, class:'list-image'),item_path(item.id) %>
+          <div class='item-img-content'>
+            <%= link_to image_tag(item.image, class:'list-image'),item_path(item.id) %>
+            <% if @order_record.exists?(item_id: item.id) %>
+              <div class="sold-out">
+                <span>Sold Out!!</span>
+              </div>
+            <% end %>
+          </div>
             <ul class ='list-info'>
               <li><%= "商品名：#{item.name}" %></li>
               <li><%= "価格：#{item.price}" %></li>

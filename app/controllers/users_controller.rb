@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @items = @user.items
+    @order_record = OrderRecord.all
   end
 
   def update
