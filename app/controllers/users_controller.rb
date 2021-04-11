@@ -3,10 +3,13 @@ class UsersController < ApplicationController
 
   def show
     @items = @user.items
+    @order_record = OrderRecord.all
   end
 
   def update
-    redirect_to :show if @user.update(update_params)
+    @user.update(update_params)
+    redirect_to action: :show
+    return
   end
 
   private

@@ -170,4 +170,11 @@ z-index: 2;
   padding: 15px;
 }
 
-
+.sold-out {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  background-color: crimson;
+  transform: skewY(-10deg);
+}
