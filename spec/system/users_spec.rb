@@ -160,13 +160,8 @@ RSpec.describe 'プロフィール編集', type: :system do
       # プロフィールを編集する
       fill_in 'user[profile]', with: ''
       fill_in 'user[profile]', with: Faker::Lorem.sentence
-      # 適用ボタンが押されたら、プロフィール情報が更新されることを確認する
-      click_on('適用する')
-      expect(page).to have_text("#{@user_profile}")
-      # 更新して閉じるボタンが押されたら、モーダルが閉じることを確認する
-      click_on('更新して閉じる')
-      expect(page).to have_no_selector('.modal')
-      # 更新したプロフィールが表示されていることを確認する
+      # 更新するボタンが押されたら、プロフィール情報が更新されることを確認する
+      click_on('更新する')
       expect(page).to have_content("#{@user_profile}")
     end
   end
