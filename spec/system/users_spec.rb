@@ -120,3 +120,87 @@ RSpec.describe 'ログイン', type: :system do
     end
   end
 end
+
+RSpec.describe 'プロフィール編集', type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+    @user2 = FactoryBot.create(:user)
+  end
+
+  context 'プロフィール編集ができるとき' do
+    it '自分のプロフィールが編集ができる' do
+      # トップページに移動する
+      basic_pass root_path
+      visit root_path
+      # トップページにログインページへ遷移するボタンがあることを確認する
+      expect(page).to have_content('ログイン')
+      # ログインページへ遷移する
+      click_on('ログイン')
+      # 正しいユーザー情報を入力する
+      fill_in 'user[email]', with: @user.email
+      fill_in 'user[password]', with: @user.password
+      # ログインボタンを押す
+      find('input[name="commit"]').click
+      # トップページへ遷移することを確認する
+      expect(current_path).to eq(root_path)
+      # ログインしたユーザのニックネームが表示されることを確認する
+      expect(page).to have_content("#{@user.nickname}")
+      # ログインしたユーザのニックネームをクリックするとログインユーザの詳細ページへ遷移することを確認する
+      click_on("#{@user.nickname}")
+      expect(current_path).to eq(user_path(@user.id))
+      # プロフィール編集画面が表示されていないことを確認する
+      expect(page).to have_no_selector('.modal')
+      # ログインしたユーザが自分の詳細ページに遷移するとプロフィール編集ボタンが表示されることを確認する
+      expect(page).to have_selector("img[src='/assets/edit_button-c8f274a32db2db949cfb4763450b04bb1a24f8b8fb263add59687cc3049fd749.png']")
+      # 編集ボタンを押すとプロフィール編集モーダルが表示されることを確認する
+      find("img[src='/assets/edit_button-c8f274a32db2db949cfb4763450b04bb1a24f8b8fb263add59687cc3049fd749.png']").click
+      expect(page).to have_selector('.modal')
+      # 編集前のプロフィールが表示されていることを確認する
+      expect(page).to have_field('user[profile]', with: "#{@user.profile}")
+      # プロフィールを編集する
+      fill_in 'user[profile]', with: ''
+      fill_in 'user[profile]', with: Faker::Lorem.sentence
+      # 適用ボタンが押されたら、プロフィール情報が更新されることを確認する
+      click_on('適用する')
+      expect(page).to have_text("#{@user_profile}")
+      # 更新して閉じるボタンが押されたら、モーダルが閉じることを確認する
+      click_on('更新して閉じる')
+      expect(page).to have_no_selector('.modal')
+      # 更新したプロフィールが表示されていることを確認する
+      expect(page).to have_content("#{@user_profile}")
+    end
+  end
+
+  context 'プロフィール編集ができない' do
+    it '自分以外のプロフィールは編集ができない' do
+      # トップページに移動する
+      basic_pass root_path
+      visit root_path
+      # トップページにログインページへ遷移するボタンがあることを確認する
+      expect(page).to have_content('ログイン')
+      # ログインページへ遷移する
+      click_on('ログイン')
+      # 正しいユーザー情報を入力する
+      fill_in 'user[email]', with: @user.email
+      fill_in 'user[password]', with: @user.password
+      # ログインボタンを押す
+      find('input[name="commit"]').click
+      # トップページへ遷移することを確認する
+      expect(current_path).to eq(root_path)
+      # 自分以外のユーザの詳細ページへ遷移する
+      visit user_path(@user2.id)
+      # 詳細ページにプロフィール編集ボタンが表示されていないことを確認する
+      expect(page).to have_no_selector("img[src='/assets/edit_button-c8f274a32db2db949cfb4763450b04bb1a24f8b8fb263add59687cc3049fd749.png']")
+    end
+
+    it 'ログインしないとプロフィールは編集ができない' do
+      # トップページに移動する
+      basic_pass root_path
+      visit root_path
+      # 登録済みのユーザの詳細ページへ遷移する
+      visit user_path(@user.id)
+      # 詳細ページにプロフィール編集ボタンが表示されていないことを確認する
+      expect(page).to have_no_selector("img[src='/assets/edit_button-c8f274a32db2db949cfb4763450b04bb1a24f8b8fb263add59687cc3049fd749.png']")
+    end
+  end
+end

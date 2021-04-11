@@ -55,8 +55,10 @@
 <%# モーダルコンテンツ%>
 <div id="modal", class="modal">
   <div class="modal-content">
-    <div class="modal-title">プロフィールの編集</div>
     <%= form_with model: @user, class:"edit-area" do |f| %>
+      <div class='modal-wrap'>
+        <label class="modal-title">プロフィールの編集</label>
+      </div>
       <%= f.text_area :profile, class:"profile-input", id:"profile-input", maxlength:200 %>
         <div class="bottoms">
           <%= f.submit "適用する" ,id:"editBtn" ,class:"edit" %>
