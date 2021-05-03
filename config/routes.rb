@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'   
   } 
   root to: 'items#index'
-  resources :users, only: [:show, :update]
-  resources :order_records, only: [:index]
+  resources :users, only: [:show, :update] do
+    resources :order_records, only: [:index]
+  end
   resources :items do
     resources :orders, only: [:index, :create]
   end
